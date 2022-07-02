@@ -1,3 +1,4 @@
+import os
 from datetime import timedelta
 
 from flask import Flask
@@ -15,7 +16,7 @@ app = Flask(__name__)
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.config["JWT_EXPIRATION_DELTA"] = timedelta(hours= 0.5)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL_V2", "sqlite:///data.db")
 app.secret_key = "eWMzNnNDTEQxWEFlWVFydGc1SVRFU3BqSXNTampSeCFBJUQqRy1LYVBkJiR6YWdTZ1ZrNHQ3dyF6JUMqRi1KYU5kUm1acTN0Nnc5eiRDJkZKQFNoVm1ZcTNzNnY5eSRCJkVhUGRTZ1ZrWXAzczV2OHkv"
 api = Api(app)
 
